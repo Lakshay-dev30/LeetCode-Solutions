@@ -1,0 +1,29 @@
+// LeetCode 15: 3Sum
+// Brute Force Approach
+// TC: O(n^3) -> three nested loops
+// SC: O(k)   -> extra space for HashSet storing k unique triplets
+// (excluding output list, SC can be considered O(1))
+
+import java.util.*;
+
+class Solution {
+    public List<List<Integer>> threeSum(int[] nums) {
+        int n = nums.length;
+
+        Set<List<Integer>> set = new HashSet<>();
+        Arrays.sort(nums);
+
+        for (int i = 0; i < n - 2; i++) {
+            for (int j = i + 1; j < n - 1; j++) {
+                for (int k = j + 1; k < n; k++) {
+                    if (nums[i] + nums[j] + nums[k] == 0) {
+                        List<Integer> temp =
+                                Arrays.asList(nums[i], nums[j], nums[k]);
+                        set.add(temp);
+                    }
+                }
+            }
+        }
+        return new ArrayList<>(set);
+    }
+}
