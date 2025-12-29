@@ -1,3 +1,4 @@
+Brute Force ----->
 //T.C = O(n*logn)
 //S.C = O(n)
 
@@ -37,3 +38,35 @@ class Solution {
         return ans.toArray(new int[ans.size()][]);
     }
 }
+
+Optimal Approach ----->
+//T.C = O(n)
+//S.c = O(n)
+
+import java.util.*;
+
+class Solution {
+    public int[][] merge(int[][] intervals) {
+        int n = intervals.length;
+
+        // Sort intervals by start time
+        Arrays.sort(intervals, (a, b) -> a[0] - b[0]);
+
+        List<int[]> ans = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            // No overlap case
+            if (ans.isEmpty() || intervals[i][0] > ans.get(ans.size() - 1)[1]) {
+                ans.add(intervals[i]);
+            }
+            // Overlapping case
+            else {
+                ans.get(ans.size() - 1)[1] =
+                        Math.max(ans.get(ans.size() - 1)[1], intervals[i][1]);
+            }
+        }
+
+        return ans.toArray(new int[ans.size()][]);
+    }
+}
+
