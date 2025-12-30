@@ -1,0 +1,44 @@
+//Brute Force
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int[] ans = new int[m+n];
+        int left = 0;
+        int right = 0;
+        int index = 0;
+
+        //Storing Element from nums1 and nums2 to ans
+        while(left<m && right<n){
+            if(nums1[left] <= nums2[right]){
+                ans[index] = nums1[left];
+                left++;
+                index++;
+            }
+            else{
+                ans[index] = nums2[right];
+                index++;
+                right++;
+            }
+        }
+        //When nums1 or nums2 exhausted
+        while(left < m){
+            ans[index] = nums1[left];
+            index++;
+            left++;
+        }
+
+        while(right < n){
+            ans[index] = nums2[right];
+            index++;
+            right++;
+        }
+
+        //Store again elements from ans to nums1 and nums2
+        for(int i=0;i<m+n;i++){
+            if(i<m) nums1[1] = ans[i];
+            else nums2[i-n] = ans[i];
+        }
+    }
+}
+
+//T.C = O(m+n)
+//S.C = O(m+n)
