@@ -1,0 +1,27 @@
+//Brute Force
+class Solution {
+    public int[] searchRange(int[] nums, int target) {
+        int n = nums.length;
+        int[] ans = {-1,-1};
+
+        //First Occurence
+        for(int i=0;i<n;i++){
+            if(nums[i] == target){
+                ans[0] = i;
+                break;
+            }
+        }
+
+        //Last Occurence
+        for(int i=n-1;i>=0;i--){
+            if(nums[i] == target){
+                ans[1] = i;
+                break;
+            }
+        }
+
+        return ans;
+    }
+}
+//T.C = O(n)
+//S.C = O(1)
