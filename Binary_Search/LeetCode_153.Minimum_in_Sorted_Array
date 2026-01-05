@@ -1,0 +1,13 @@
+//Brute Force
+class Solution {
+    public int findMin(int[] nums) {
+        int n = nums.length;
+        int min = Integer.MAX_VALUE;
+        for(int i=0;i<n;i++){
+            min = Math.min(nums[i],min);
+        }
+        return min;
+    }
+}
+//T.C = O(n)
+//S.C = O(1)
