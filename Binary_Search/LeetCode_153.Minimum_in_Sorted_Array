@@ -1,4 +1,6 @@
 //Brute Force
+//T.C = O(n)
+//S.C = O(1)
 class Solution {
     public int findMin(int[] nums) {
         int n = nums.length;
@@ -9,5 +11,31 @@ class Solution {
         return min;
     }
 }
-//T.C = O(n)
+
+//Optimal Approach
+class Solution {
+    public int findMin(int[] nums) {
+        int n = nums.length;
+        int lo = 0;
+        int hi = n-1;
+        int min = Integer.MAX_VALUE;
+
+        while(lo<=hi){
+            
+            int mid = lo +(hi-lo)/2;
+
+            if(nums[lo] <= nums[mid]){        //Left Part is Sorted
+                min = Math.min(min,nums[lo]);
+                lo = mid+1;
+            }
+            else{                           //Right Part is Sorted
+                min = Math.min(min,nums[mid]);
+                hi = mid-1;
+            }
+        }
+
+        return min;
+    }
+}
+//T.C = O(log n)
 //S.C = O(1)
