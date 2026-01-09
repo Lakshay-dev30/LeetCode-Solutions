@@ -1,0 +1,29 @@
+//Using Max and Ceil Value
+class Solution {
+
+		public int compute(int[] arr,int hourly){      //find the sum of hrs
+        int totalHours = 0;
+        for(int i=0;i<arr.length;i++){
+            totalHours += Math.ceil((double)arr[i]/hourly);
+        }
+        return totalHours;
+    }
+    
+    public int minEatingSpeed(int[] piles, int h) {
+        int n = piles.length;
+        int max = Integer.MIN_VALUE;
+
+        for(int i=0;i<n;i++){
+            max = Math.max(piles[i],max);          //find the max
+        }
+
+        for(int i=1;i<=max;i++){
+            int requiredHrs = compute(piles,i);
+            if(requiredHrs <=h){
+                return i;
+            }
+        }
+
+        return -1;
+    }
+}
