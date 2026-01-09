@@ -1,4 +1,4 @@
-//Using Max and Ceil Value
+//Brute Force Solution - Using Max and Ceil Value
 class Solution {
 
 		public int compute(int[] arr,int hourly){      //find the sum of hrs
@@ -27,3 +27,43 @@ class Solution {
         return -1;
     }
 }
+
+//Optimal Approach
+class Solution {
+
+    public int compute(int[] arr, int hourly) {
+        int totalHours = 0;
+        for (int i = 0; i < arr.length; i++) {
+            totalHours += Math.ceil((double) arr[i] / hourly);
+        }
+        return totalHours;
+    }
+
+    public int minEatingSpeed(int[] piles, int h) {
+        int max = Integer.MIN_VALUE;
+
+        for (int pile : piles) {
+            max = Math.max(max, pile);
+        }
+
+        int lo = 1;
+        int hi = max;
+        int ans = max;   
+
+        while (lo <= hi) {
+            int mid = lo + (hi - lo) / 2;
+            int requiredHrs = compute(piles, mid);
+
+            if (requiredHrs <= h) {
+                ans = mid;
+                hi = mid - 1;
+            } else {
+                lo = mid + 1;
+            }
+        }
+
+        return ans;
+    }
+}
+//T.C = O(n) * log(max ele)
+//S.C = O(1)
