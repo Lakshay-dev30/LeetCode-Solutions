@@ -1,0 +1,40 @@
+class Solution {
+    public int countSubArray(int[] nums,int maSum){
+        int subarrays = 1;
+        int currsum = 0;
+
+        for(int num : nums){
+            if(currsum + num <= maSum){
+                currsum += num;
+            }
+            else{
+                subarrays++;
+                currsum = num;
+            }
+        }
+        return subarrays;
+    }
+    public int splitArray(int[] nums, int k) {
+        int lo = 0;
+        int hi =0;
+
+        for(int num : nums){
+            lo = Math.max(num,lo);
+            hi += num;
+        }
+
+        while(lo <= hi){
+            int mid = lo + (hi-lo)/2;
+            int requires = countSubArray(nums,mid);
+
+            if(requires <= k){
+                hi = mid - 1;
+            }
+            else{
+                lo = mid+1;
+            }
+        }
+
+        return lo;
+    }
+}
